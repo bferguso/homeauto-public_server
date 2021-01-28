@@ -14,11 +14,15 @@ class ExternalContentDao:
     GEORGIA_SOUTH = "GEORGIA_SOUTH"
 
     # Marine Condition Stations
+    # Land
     PAM_ROCKS = "PAM_ROCKS"
     POINT_ATKINSON = "POINT_ATKINSON"
+    GIBSONS = "GIBSONS"
+    SQUAMISH_AIRPORT = "SQUAMISH_AIRPORT"
+
+    #Buoy
     ENGLISH_BAY = "ENGLISH_BAY"
     HALIBUT_BANK = "HALIBUT_BANK"
-    GIBSONS = "GIBSONS"
 
     URLS = {
         "FORECAST": "https://weather.gc.ca/rss/marine/{area}_e.xml",
@@ -41,6 +45,13 @@ class ExternalContentDao:
     STATION_IDS = {
         "PAM_ROCKS": {"id": "WAS", "display_name": "Pam Rocks", "area_name": "HOWE_SOUND"},
         "POINT_ATKINSON": {"id": "WSB", "display_name": "Point Atkinson", "area_name": "GEORGIA_SOUTH"},
+        "SQUAMISH_AIRPORT": {"id": "WSK", "display_name": "Squamish Airport", "area_name": "GEORGIA_SOUTH"},
+        "WEST_VANCOUVER": {"id": "WWA", "display_name": "West Vancouver", "area_name": "GEORGIA_SOUTH"},
+        "VANCOUVER_HARBOUR": {"id": "WHC", "display_name": "Vancouver Harbour", "area_name": "GEORGIA_SOUTH"},
+        "VANCOUVER_INTL_AIRPORT": {"id": "YVR", "display_name": "Vancouver Int'l Airport", "area_name": "GEORGIA_SOUTH"},
+        "SAND_HEADS": {"id": "WVF", "display_name": "Sand Heads Lighthouse", "area_name": "GEORGIA_SOUTH"},
+        "TSAWWASSEN": {"id": "VTF", "display_name": "Tsawwassen Ferry Terminal", "area_name": "GEORGIA_SOUTH"},
+        "SATURNA_ISLAND": {"id": "WEZ", "display_name": "Saturna Island", "area_name": "GEORGIA_SOUTH"},
         "ENGLISH_BAY": {"id": "46304",  "display_name": "English Bay", "area_name": "GEORGIA_SOUTH"},
         "HALIBUT_BANK": {"id": "46146", "display_name": "Halibut Bank", "area_name": "GEORGIA_SOUTH"}
     }
