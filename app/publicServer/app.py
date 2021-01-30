@@ -21,19 +21,43 @@ def verify_token(password):
 
 @app.route('/')
 def weather():
-    weather_data = {"forecasts": [externalContent.getMarineForecast(externalContent.HOWE_SOUND),
-                                  externalContent.getMarineForecast(externalContent.GEORGIA_SOUTH)],
-                    "current_conditions": [externalContent.getMarineConditions(externalContent.PAM_ROCKS),
-                                           externalContent.getMarineConditions(externalContent.POINT_ATKINSON),
-                                           externalContent.getMarineConditions(externalContent.HALIBUT_BANK)],
+    weather_data = {"forecasts": [externalContent.get_marine_forecast(externalContent.HOWE_SOUND),
+                                  externalContent.get_marine_forecast(externalContent.GEORGIA_SOUTH)],
+                    "current_conditions": [externalContent.get_marine_conditions(externalContent.PAM_ROCKS),
+                                           externalContent.get_marine_conditions(externalContent.POINT_ATKINSON),
+                                           externalContent.get_marine_conditions(externalContent.HALIBUT_BANK)],
                     "tide_data": [externalContent.get_tides(externalContent.POINT_ATKINSON, datetime.date.today()),
                                   externalContent.get_tides(externalContent.GIBSONS, datetime.date.today())]}
     return render_template("weather.html", weather_data=weather_data)
 
+
+@app.route('/getConditionStations')
+def get_condition_stations():
+    station_type = request.args.get('stationType')
+    stations = externalContent.get_condition_stations(station_type)
+    return Response(response=json.dumps(stations),
+                    status=200,
+                    mimetype="application/json")
+
+
+@app.route('/getTideStations')
+def get_tide_stations():
+    return Response(response=json.dumps(externalContent.get_tide_stations()),
+                    status=200,
+                    mimetype="application/json")
+
+
+@app.route('/getForecastAreas')
+def get_forecast_areas():
+    return Response(response=json.dumps(externalContent.get_forecast_areas()),
+                    status=200,
+                    mimetype="application/json")
+
+
 @app.route('/getMarineConditions')
 def current_marine_condition():
     station = request.args.get('station')
-    obj = externalContent.getMarineConditions(station)
+    obj = externalContent.get_marine_conditions(station)
     return Response(response=json.dumps(obj),
                     status=200,
                     mimetype="application/json")
@@ -42,7 +66,7 @@ def current_marine_condition():
 @app.route('/getMarineForecast')
 def current_marine_forecast():
     area = request.args.get('area')
-    obj = externalContent.getMarineForecast(area)
+    obj = externalContent.get_marine_forecast(area)
     return Response(response=json.dumps(obj),
                     status=200,
                     mimetype="application/json")
@@ -55,6 +79,10 @@ def tides():
     return Response(response=json.dumps(obj),
                     status=200,
                     mimetype="application/json")
+
+def tideStationList():
+    externalContent.S
+
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0',port=5000)

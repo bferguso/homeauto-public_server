@@ -37,24 +37,95 @@ class ExternalContentDao:
     }
 
     AREA_IDS = {
+        #"HOWE_SOUND": {"id": "06400", "rss_id": "06400", "display_name": "Howe Sound"},
+        #"GEORGIA_NORTH": {"id": "14301", "rss_id": "14300", "display_name": "Straight of Georgia N."},
+        #"GEORGIA_SOUTH": {"id": "14305", "rss_id": "14300", "display_name": "Straight of Georgia S."}
+        "BOWIE_SOUTH": {"id": "01505", "rss_id": "01500", "display_name": "Bowie - southern half"},
+        "CENTRAL_COAST": {"id": "02300", "rss_id": "02300", "display_name": "Central Coast from McInnes Island to Pine Island"},
+        "EXPLORER_NORTH": {"id": "04808", "rss_id": "04800", "display_name": "Explorer - northwestern half"},
+        "EXPLORER_SOUTH": {"id": "04804", "rss_id": "04800", "display_name": "Explorer - southeastern half"},
+        "HARO_STRAIGHT": {"id": "06100", "rss_id": "06100", "display_name": "Haro Strait"},
+        "HECATE_STRAIGHT": {"id": "06200", "rss_id": "06200", "display_name": "Hecate Strait"},
         "HOWE_SOUND": {"id": "06400", "rss_id": "06400", "display_name": "Howe Sound"},
-        "GEORGIA_NORTH": {"id": "14301", "rss_id": "14300", "display_name": "Straight of Georgia N."},
-        "GEORGIA_SOUTH": {"id": "14305", "rss_id": "14300", "display_name": "Straight of Georgia S."}
+        "JOHNSTONE_STRAIGHT": {"id": "06800", "rss_id": "06800", "display_name": "Johnstone Strait"},
+        "JUAN_DE_FUCA_CENTRAL": {"id": "07010", "rss_id": "07010", "display_name": "Juan de Fuca Strait - central strait"},
+        "JUAN_DE_FUCA_EAST_ENTRANCE": {"id": "07003", "rss_id": "07000", "display_name": "Juan de Fuca Strait - east entrance"},
+        "JUAN_DE_FUCA_WEST_ENTRANCE": {"id": "07007", "rss_id": "07000", "display_name": "Juan de Fuca Strait - west entrance "},
+        "QUEEEN_CHARLOTTE_SOUND_EAST": {"id": "12303", "rss_id": "12300", "display_name": "Queen Charlotte Sound - eastern half "},
+        "QUEEEN_CHARLOTTE_SOUND_WEST": {"id": "12307", "rss_id": "12300", "display_name": "Queen Charlotte Sound - western half "},
+        "QUEEEN_CHARLOTTE_STRAIGHT": {"id": "12400", "rss_id": "12400", "display_name": "Queen Charlotte Strait "},
+        "GEORGIA_NORTH": {"id": "14301", "rss_id": "14300", "display_name": "Strait of Georgia - north of Nanaimo "},
+        "GEORGIA_SOUTH": {"id": "14305", "rss_id": "14300", "display_name": "Strait of Georgia - south of Nanaimo "},
+        "WEST_COAST_HAIDA_GWAII": {"id": "15205", "rss_id": "15200", "display_name": "West Coast Haida Gwaii - southern half "},
+        "WEST_COAST_VANCOUVER_ISLAND_NORTH": {"id": "15300", "rss_id": "15300", "display_name": "West Coast Vancouver Island North "},
+        "WEST_COAST_VANCOUVER_ISLAND_SOUTH": {"id": "16200", "rss_id": "16200", "display_name": "West Coast Vancouver Island South "},
     }
 
     STATION_IDS = {
-        "PAM_ROCKS": {"id": "WAS", "display_name": "Pam Rocks", "area_name": "HOWE_SOUND"},
-        "POINT_ATKINSON": {"id": "WSB", "display_name": "Point Atkinson", "area_name": "GEORGIA_SOUTH"},
-        "SQUAMISH_AIRPORT": {"id": "WSK", "display_name": "Squamish Airport", "area_name": "GEORGIA_SOUTH"},
-        "WEST_VANCOUVER": {"id": "WWA", "display_name": "West Vancouver", "area_name": "GEORGIA_SOUTH"},
-        "VANCOUVER_HARBOUR": {"id": "WHC", "display_name": "Vancouver Harbour", "area_name": "GEORGIA_SOUTH"},
-        "VANCOUVER_INTL_AIRPORT": {"id": "YVR", "display_name": "Vancouver Int'l Airport", "area_name": "GEORGIA_SOUTH"},
-        "SAND_HEADS": {"id": "WVF", "display_name": "Sand Heads Lighthouse", "area_name": "GEORGIA_SOUTH"},
-        "TSAWWASSEN": {"id": "VTF", "display_name": "Tsawwassen Ferry Terminal", "area_name": "GEORGIA_SOUTH"},
-        "SATURNA_ISLAND": {"id": "WEZ", "display_name": "Saturna Island", "area_name": "GEORGIA_SOUTH"},
-        "ENGLISH_BAY": {"id": "46304",  "display_name": "English Bay", "area_name": "GEORGIA_SOUTH"},
-        "HALIBUT_BANK": {"id": "46146", "display_name": "Halibut Bank", "area_name": "GEORGIA_SOUTH"}
+#        "PAM_ROCKS": {"id": "WAS", "display_name": "Pam Rocks", "area_name": "HOWE_SOUND", "type": "land"},
+#        "POINT_ATKINSON": {"id": "WSB", "display_name": "Point Atkinson", "area_name": "GEORGIA_SOUTH", "type": "land"},
+#        "SQUAMISH_AIRPORT": {"id": "WSK", "display_name": "Squamish Airport", "area_name": "GEORGIA_SOUTH", "type": "land"},
+#        "WEST_VANCOUVER": {"id": "WWA", "display_name": "West Vancouver", "area_name": "GEORGIA_SOUTH", "type": "land"},
+#        "VANCOUVER_HARBOUR": {"id": "WHC", "display_name": "Vancouver Harbour", "area_name": "GEORGIA_SOUTH", "type": "land"},
+#        "VANCOUVER_INTL_AIRPORT": {"id": "YVR", "display_name": "Vancouver Int'l Airport", "area_name": "GEORGIA_SOUTH", "type": "land"},
+#        "SAND_HEADS": {"id": "WVF", "display_name": "Sand Heads Lighthouse", "area_name": "GEORGIA_SOUTH", "type": "land"},
+#        "TSAWWASSEN": {"id": "VTF", "display_name": "Tsawwassen Ferry Terminal", "area_name": "GEORGIA_SOUTH", "type": "land"},
+#        "SATURNA_ISLAND": {"id": "WEZ", "display_name": "Saturna Island", "area_name": "GEORGIA_SOUTH", "type": "land"},
+
+
+        "BALLENAS_ISLANDS": {"id": "WGB", "display_name": "Ballenas Islands", "area_name": "GEORGIA_SOUTH", "type": "land"},
+        "BELLA_BELLA_AP": {"id": "BBC", "display_name": "Bella Bella Airport", "area_name": "GEORGIA_SOUTH", "type": "land"},
+        "BELLA_COOLA_AP": {"id": "YBD", "display_name": "Bella Coola Airport", "area_name": "GEORGIA_SOUTH", "type": "land"},
+        "CAMPBELL_RIVER_AP": {"id": "YBL", "display_name": "Campbell River Airport", "area_name": "GEORGIA_SOUTH", "type": "land"},
+        "CAPE_ST_JAMES": {"id": "WZV", "display_name": "Cape St.James", "area_name": "GEORGIA_SOUTH", "type": "land"},
+        "CATHEDRAL_POINT": {"id": "WME", "display_name": "Cathedral Point", "area_name": "GEORGIA_SOUTH", "type": "land"},
+        "COMOX_AP": {"id": "YQQ", "display_name": "Comox Airport", "area_name": "GEORGIA_SOUTH", "type": "land"},
+        "DISCOVERY_ISLAND": {"id": "WDR", "display_name": "Discovery Island", "area_name": "GEORGIA_SOUTH", "type": "land"},
+        "ENTRANCE_ISLAND": {"id": "WEL", "display_name": "Entrance Island", "area_name": "GEORGIA_SOUTH", "type": "land"},
+        "ESQUIMALT_HARBOUR": {"id": "WPF", "display_name": "Esquimalt Harbour", "area_name": "GEORGIA_SOUTH", "type": "land"},
+        "ESTAVAN_POINT": {"id": "WEB", "display_name": "Estevan Point", "area_name": "GEORGIA_SOUTH", "type": "land"},
+        "FANNY_ISLAND": {"id": "XFA", "display_name": "Fanny Island", "area_name": "GEORGIA_SOUTH", "type": "land"},
+        "GRIEF_POINT": {"id": "WKA", "display_name": "Grief Point", "area_name": "GEORGIA_SOUTH", "type": "land"},
+        "HERBERT_ISLAND": {"id": "WLP", "display_name": "Herbert Island", "area_name": "GEORGIA_SOUTH", "type": "land"},
+        "PAM_ROCKS": {"id": "WAS", "display_name": "Howe Sound - Pam Rocks", "area_name": "HOWE_SOUND", "type": "land"},
+        "KELP_REEFS": {"id": "WZO", "display_name": "Kelp Reefs", "area_name": "GEORGIA_SOUTH", "type": "land"},
+        "MALAHAT": {"id": "WKH", "display_name": "Malahat", "area_name": "GEORGIA_SOUTH", "type": "land"},
+        "NANAIMO_AP": {"id": "YCD", "display_name": "Nanaimo Airport", "area_name": "GEORGIA_SOUTH", "type": "land"},
+        "POINT_ATKINSON": {"id": "WSB", "display_name": "Point Atkinson", "area_name": "GEORGIA_SOUTH", "type": "land"},
+        "PORT_ALBERNI": {"id": "WQC", "display_name": "Port Alberni", "area_name": "GEORGIA_SOUTH", "type": "land"},
+        "PORT_HARDY_AP": {"id": "YZT", "display_name": "Port Hardy Airport", "area_name": "GEORGIA_SOUTH", "type": "land"},
+        "POWELL_RIVER_AP": {"id": "YPW", "display_name": "Powell River Airport", "area_name": "GEORGIA_SOUTH", "type": "land"},
+        "RACE_ROCKS_LIGHT_STN": {"id": "WQK", "display_name": "Race Rocks Lightstation", "area_name": "GEORGIA_SOUTH", "type": "land"},
+        "SAND_HEADS_LIGHT_STN": {"id": "WVF", "display_name": "Sand Heads Lightstation", "area_name": "GEORGIA_SOUTH", "type": "land"},
+        "SARTINE_ISLAND": {"id": "WFG", "display_name": "Sartine Island", "area_name": "GEORGIA_SOUTH", "type": "land"},
+        "SATURNA_ISLAND": {"id": "WEZ", "display_name": "Saturna Island", "area_name": "GEORGIA_SOUTH", "type": "land"},
+        "SECHELT": {"id": "VOU", "display_name": "Sechelt", "area_name": "GEORGIA_SOUTH", "type": "land"},
+        "SHERINGHAM_POINT": {"id": "WSP", "display_name": "Sheringham Point", "area_name": "GEORGIA_SOUTH", "type": "land"},
+        "SISTERS_ISLETS": {"id": "WGT", "display_name": "Sisters Islets", "area_name": "GEORGIA_SOUTH", "type": "land"},
+        "SOLANDER_ISLAND": {"id": "WRU", "display_name": "Solander Island", "area_name": "GEORGIA_SOUTH", "type": "land"},
+        "SQUAMISH_AP": {"id": "WSK", "display_name": "Squamish Airport", "area_name": "GEORGIA_SOUTH", "type": "land"},
+        "TOFINO_AP": {"id": "YAZ", "display_name": "Tofino Airport", "area_name": "GEORGIA_SOUTH", "type": "land"},
+        "TSAWWASSEN": {"id": "VTF", "display_name": "Tsawwassen Ferry Terminal", "area_name": "GEORGIA_SOUTH", "type": "land"},
+        "VANCOUVER_HARBOUR": {"id": "WHC", "display_name": "Vancouver Harbour", "area_name": "GEORGIA_SOUTH", "type": "land"},
+        "VANCOUVER_INTL_AP": {"id": "YVR", "display_name": "Vancouver Int'l Airport", "area_name": "GEORGIA_SOUTH", "type": "land"},
+        "VICTORIA_GONZALES": {"id": "WLM", "display_name": "Victoria Gonzales", "area_name": "GEORGIA_SOUTH", "type": "land"},
+        "VICTORIA_INTL_AP": {"id": "YYJ", "display_name": "Victoria Int'l Airport", "area_name": "GEORGIA_SOUTH", "type": "land"},
+        "VICTORIA_UNIVERSITY": {"id": "WYJ", "display_name": "Victoria, University of", "area_name": "GEORGIA_SOUTH", "type": "land"},
+        "WEST_VANCOUVER": {"id": "WWA", "display_name": "West Vancouver", "area_name": "GEORGIA_SOUTH", "type": "land"},
+
+
+        "ENGLISH_BAY": {"id": "46304",  "display_name": "English Bay", "area_name": "GEORGIA_SOUTH", "type": "buoy"},
+        "HALIBUT_BANK": {"id": "46146", "display_name": "Halibut Bank", "area_name": "GEORGIA_SOUTH", "type": "buoy"},
+        "EAST_DELLWOOD": {"id": "14305", "display_name": "East Dellwood", "area_name": "GEORGIA_SOUTH", "type": "buoy"},
+        "GEORGIA_STRAIGHT": {"id": "46303", "display_name": "Georgia Strait", "area_name": "GEORGIA_SOUTH", "type": "buoy"},
+        "LA_PEROUSE_BANK": {"id": "46206", "display_name": "La Perouse Bank", "area_name": "GEORGIA_SOUTH", "type": "buoy"},
+        "SENTRY_SHOAL": {"id": "46131", "display_name": "Sentry Shoal", "area_name": "GEORGIA_SOUTH", "type": "buoy"},
+        "SOUTH_BROOKS": {"id": "46132", "display_name": "South Brooks", "area_name": "GEORGIA_SOUTH", "type": "buoy"},
+        "SOUTH_HECATE_STRAIGHT": {"id": "46185", "display_name": "South Hecate Strait", "area_name": "GEORGIA_SOUTH", "type": "buoy"},
+        "SOUTH_MORESBY": {"id": "46147", "display_name": "South Moresby", "area_name": "GEORGIA_SOUTH", "type": "buoy"},
+        "SOUTH_NOMAD": {"id": "46036", "display_name": "South Nomad", "area_name": "GEORGIA_SOUTH", "type": "buoy"},
     }
+
 
     TIDE_STATION_IDS = {
         "POINT_ATKINSON": {"id": "7795", "display_name": "Point Atkinson"},
@@ -62,9 +133,31 @@ class ExternalContentDao:
     }
     TIDE_DATE_FORMAT = "%Y/%m/%d"
 
+    def get_forecast_areas(self):
+        areas = list(self.AREA_IDS.keys());
+        areas.sort()
+        return areas
 
-    def getMarineForecast(self, location):
-        site = self.__getInfoForLocation(location, self.AREA_IDS)
+    def get_condition_stations(self, station_type):
+        if not station_type:
+            stations = list(self.STATION_IDS.keys())
+            stations.sort()
+            return stations
+
+        stations = []
+        for key, value in self.STATION_IDS.items():
+            if value["type"] == station_type:
+                stations.append(key)
+        stations.sort()
+        return stations
+
+    def get_tide_stations(self):
+        stations = list(self.TIDE_STATION_IDS.keys())
+        stations.sort()
+        return stations
+
+    def get_marine_forecast(self, location):
+        site = self.__get_info_for_location(location, self.AREA_IDS)
         forecast = {"location": site["display_name"], "forecastEntries": []}
         NewsFeed = feedparser.parse(self.URLS["FORECAST"].replace("{area}", site["rss_id"]))
         # print ('Number of entries'+str(len(NewsFeed.entries)))
@@ -73,9 +166,9 @@ class ExternalContentDao:
         forecast["forecastEntries"].extend(NewsFeed.entries)
         return forecast
 
-    def getMarineConditions(self, station_name):
-        station = self.__getInfoForLocation(station_name, self.STATION_IDS)
-        site = self.__getInfoForLocation(station["area_name"], self.AREA_IDS)
+    def get_marine_conditions(self, station_name):
+        station = self.__get_info_for_location(station_name, self.STATION_IDS)
+        site = self.__get_info_for_location(station["area_name"], self.AREA_IDS)
         conditions = {"location": site["display_name"], "station": station["display_name"], "conditionEntries": []}
         response = urllib.request.urlopen(self.URLS["CONDITIONS"].replace("{area}", site["id"]).replace("{station}", station["id"]))
         raw_data = response.read()
@@ -86,7 +179,7 @@ class ExternalContentDao:
         return conditions
 
     def get_tides(self, station_name, start_date):
-        station = self.__getInfoForLocation(station_name, self.TIDE_STATION_IDS)
+        station = self.__get_info_for_location(station_name, self.TIDE_STATION_IDS)
         tide_data = {"location": station["display_name"], "station_id": station["id"], "timezone": "PST", "tide_entries": []}
         url = self.URLS["TIDES"].replace("{station_id}", station["id"]).replace("{date}", urllib.parse.quote(start_date.strftime(self.TIDE_DATE_FORMAT)))
         # print("Getting url: "+url)
@@ -96,7 +189,8 @@ class ExternalContentDao:
         tide_data["tide_entries"] = ExternalContentDao.__parse_tides(raw_data.decode(encoding))
         return tide_data
 
-    def __getInfoForLocation(self, location, location_list):
+    @staticmethod
+    def __get_info_for_location(location, location_list):
         site = location_list[location]
         if not site:
             raise Exception("Invalid location "+location)
@@ -133,6 +227,7 @@ class ExternalContentDao:
                 print("Unknown tide data format "+tide_line)
         # print(data)
         return data
+
 
 #Conditions: https://weather.gc.ca/marine/incs/weather_conditions_ajax.php?mapID=02&siteID=06400&stationID=WAS&lang=e&page=cc
 # Pages: cc = current conditions
