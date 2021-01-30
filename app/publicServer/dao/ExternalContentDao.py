@@ -128,9 +128,26 @@ class ExternalContentDao:
 
 
     TIDE_STATION_IDS = {
-        "POINT_ATKINSON": {"id": "7795", "display_name": "Point Atkinson"},
-        "GIBSONS": {"id": "7820", "display_name": "Gibsons"}
+        "BOAT_HARBOUR": {"id": "7480", "display_name": "Boat Harbour"},
+        "BOOM_ISLET": {"id": "7843", "display_name": "Boom Islet"},
+        "DIONISIO_POINT": {"id": "7535", "display_name": "Dionisio Point"},
+        "GIBSONS": {"id": "7820", "display_name": "Gibsons"},
+        "HALFMOON_BAY": {"id": "7830", "display_name": "Halfmoon Bay"},
+        "NANAIMO": {"id": "7917", "display_name": "Nanaimo"},
+        "NEW_WESTMINSTER": {"id": "7654", "display_name": "New Westminster *"},
+        "POINT_ATKINSON": {"id": "7795", "display_name": "Point Atkinson *"},
+        "PORPOISE_BAY": {"id": "7852", "display_name": "Porpoise Bay"},
+        "PORT_MOODY": {"id": "7755", "display_name": "Port Moody"},
+        "SAND_HEADS": {"id": "7594", "display_name": "Sand Heads"},
+        "SILVA_BAY": {"id": "7550", "display_name": "Silva Bay"},
+        "SQUAMISH": {"id": "7811", "display_name": "Squamish"},
+        "STEVESON": {"id": "7607", "display_name": "Steveston"},
+        "TSAWWASSEN": {"id": "7590", "display_name": "Tsawwassen"},
+        "VANCOUVER": {"id": "7735", "display_name": "Vancouver *"},
+        "WHITE_ROCK": {"id": "7577", "display_name": "White Rock"}
     }
+
+
     TIDE_DATE_FORMAT = "%Y/%m/%d"
 
     def get_forecast_areas(self):
