@@ -174,7 +174,7 @@ class ExternalContentDao:
         return stations
 
     def get_marine_forecast(self, location):
-        site = self.__get_info_for_location(location, self.AREA_IDS)
+        site = ExternalContentDao.__get_info_for_location(location, self.AREA_IDS)
         forecast = {"location": site["display_name"], "forecastEntries": []}
         NewsFeed = feedparser.parse(self.URLS["FORECAST"].replace("{area}", site["rss_id"]))
         # print ('Number of entries'+str(len(NewsFeed.entries)))
@@ -184,10 +184,12 @@ class ExternalContentDao:
         return forecast
 
     def get_marine_conditions(self, station_name):
-        station = self.__get_info_for_location(station_name, self.STATION_IDS)
-        site = self.__get_info_for_location(station["area_name"], self.AREA_IDS)
+        station = ExternalContentDao.__get_info_for_location(station_name, self.STATION_IDS)
+        site = ExternalContentDao.__get_info_for_location(station["area_name"], self.AREA_IDS)
         conditions = {"location": site["display_name"], "station": station["display_name"], "conditionEntries": []}
-        response = urllib.request.urlopen(self.URLS["CONDITIONS"].replace("{area}", site["id"]).replace("{station}", station["id"]))
+        url = self.URLS["CONDITIONS"].replace("{area}", site["id"]).replace("{station}", station["id"])
+        #print("Trying to open url: "+url);
+        response = urllib.request.urlopen(url)
         raw_data = response.read()
         encoding = response.info().get_content_charset('utf8')
         # print(encoding)
@@ -196,7 +198,7 @@ class ExternalContentDao:
         return conditions
 
     def get_tides(self, station_name, start_date):
-        station = self.__get_info_for_location(station_name, self.TIDE_STATION_IDS)
+        station = ExternalContentDao.__get_info_for_location(station_name, self.TIDE_STATION_IDS)
         tide_data = {"location": station["display_name"], "station_id": station["id"], "timezone": "PST", "tide_entries": []}
         url = self.URLS["TIDES"].replace("{station_id}", station["id"]).replace("{date}", urllib.parse.quote(start_date.strftime(self.TIDE_DATE_FORMAT)))
         # print("Getting url: "+url)
@@ -208,21 +210,26 @@ class ExternalContentDao:
 
     @staticmethod
     def __get_info_for_location(location, location_list):
+        if location not in location_list:
+            raise ValueError("Invalid location " + location)
         site = location_list[location]
         if not site:
-            raise Exception("Invalid location "+location)
+            raise ValueError("Invalid location "+location)
         return site
 
     def __parseConditions(self, html_conditions):
         data = []
         soup = BeautifulSoup(html_conditions, "html.parser")
-        for row in soup.find("table").find("tbody").find_all("tr"):
-            key = row.find("th");
-            while key:
-                value = key.find_next_sibling("td")
-                data.append({"title": key.renderContents().decode().replace("\xa0"," "), "value": value.text})
-                key = value.find_next_sibling("th")
-            #data.append(row)
+        if soup.find("table") and soup.find("table").find("tbody"):
+            for row in soup.find("table").find("tbody").find_all("tr"):
+                key = row.find("th");
+                while key:
+                    value = key.find_next_sibling("td")
+                    data.append({"title": key.renderContents().decode().replace("\xa0"," "), "value": value.text})
+                    key = value.find_next_sibling("th")
+                #data.append(row)
+        else:
+            data.append({"title": "Error", "value": "No data available"})
         return data
 
     @staticmethod
