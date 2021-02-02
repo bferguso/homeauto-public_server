@@ -29,7 +29,7 @@
             stationId = "{{tide_data.station_id}}";
             tideDiv = $("<div style='display: block'></div>")
             tideDiv.append('<div>{{tide_data.location}}</div>');
-            tideDiv.append("<div style='max-width: 600px'><canvas id='tides"+stationId+"' ></canvas></div>");
+            tideDiv.append("<div style='max-width: 750px'><canvas id='tides"+stationId+"' ></canvas></div>");
             tideChartsDiv.append(tideDiv);
             ctx = $("#tides"+stationId);
             var tideChart = new Chart(ctx, {
@@ -100,7 +100,7 @@
 <hr>
 
 <div id="tideChartsDiv" class="marineConditions">
-    <div style="font-size: medium">Tide information (ft)</div>
+    <div>Tide information (ft)</div>
 </div>
 </body>
 </html>

@@ -60,14 +60,38 @@ div.dashboardContainer {
     flex-grow: 0;
 }
 
-@media only screen and (max-width: 600px)
+@media only screen and (max-width: 750px)
 {
+    body {
+        font-size: 40px !important;
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+
     div.dashboardItem {
-        flex: 50%;
+        flex: 100%;
+        margin-bottom: 30px !important;
+        line-height: 1.0 !important;
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+    div.marineForecast, div.marineConditions {
+        font-size: 40px !important;
+    }
+    div.marineForecastEntry {
+        margin-bottom: 30px !important;
+    }
+    div.dashboardLocation
+    {
+        font-size: 45px !important;
+    }
+    div.dashboardIp, div.marineArea
+    {
+        float: right !important;
     }
 }
 
-@media only screen and (min-width: 600px)
+@media only screen and (min-width: 751px)
 {
     div.dashboardItem {
         flex: 20%;

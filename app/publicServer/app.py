@@ -31,6 +31,41 @@ def weather():
     return render_template("weather.html", weather_data=weather_data)
 
 
+@app.route('/custom')
+def custom_weather():
+    forecast_areas = json.loads(request.values.get("forecasts"))
+    forecasts = []
+    for forecast_area in forecast_areas:
+        forecasts.append(externalContent.get_marine_forecast(forecast_area))
+
+    condition_stations = json.loads(request.values.get("conditions"))
+    conditions = []
+    for condition_station in condition_stations:
+        conditions.append(externalContent.get_marine_conditions(condition_station))
+
+    tide_stations = json.loads(request.values.get("tides"))
+    marine_tides = []
+    for tide_station in tide_stations:
+        marine_tides.append(externalContent.get_tides(tide_station, datetime.date.today()))
+    weather_data = {"forecasts": forecasts,
+                    "current_conditions": conditions,
+                    "tide_data": marine_tides}
+    return render_template("weather.html", weather_data=weather_data)
+
+
+@app.route('/buildUrl')
+def build_url():
+    stations = {"forecast_areas": externalContent.get_forecast_areas(),
+                "tide_stations": externalContent.get_tide_stations(),
+                "condition_stations": {
+                    "land": externalContent.get_condition_stations("land"),
+                    "buoy": externalContent.get_condition_stations("buoy")
+                    }
+                }
+    build_base_url = request.base_url.replace("buildUrl", "custom")
+    return render_template("urlBuilder.html", station_data=stations, base_url=build_base_url)
+
+
 @app.route('/getConditionStations')
 def get_condition_stations():
     station_type = request.args.get('stationType')
