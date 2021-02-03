@@ -252,7 +252,6 @@ class ExternalContentDao:
         # print(data)
         return data
 
-
 #Conditions: https://weather.gc.ca/marine/incs/weather_conditions_ajax.php?mapID=02&siteID=06400&stationID=WAS&lang=e&page=cc
 # Pages: cc = current conditions
 #        p24hc = previous 24h conditions
