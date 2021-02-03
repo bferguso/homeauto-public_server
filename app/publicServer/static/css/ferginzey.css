@@ -60,12 +60,17 @@ div.dashboardContainer {
     flex-grow: 0;
 }
 
-@media only screen and (max-width: 750px)
+@media only screen and (max-device-width: 750px)
 {
     body {
         font-size: 40px !important;
         padding-left: 15px !important;
         padding-right: 15px !important;
+    }
+
+    input[type=checkbox] {
+        width: 40px;
+        height: 40px;
     }
 
     div.dashboardItem {
@@ -74,27 +79,54 @@ div.dashboardContainer {
         line-height: 1.0 !important;
         padding-left: 15px !important;
         padding-right: 15px !important;
+        border-radius: 20px !important;
     }
+
+    label {
+        font-size: 40px;
+    }
+
+    div.dashboardTemp
+    {
+        font-size: 100px !important;
+    }
+
+    div.dashboardTimestamp, div.nodeControl, div.dashboardIp, div.smallDarkGray, div.marineArea
+    {
+        font-size: 45px !important;
+    }
+
     div.marineForecast, div.marineConditions {
         font-size: 40px !important;
     }
+
     div.marineForecastEntry {
-        margin-bottom: 30px !important;
+        margin-bottom: 50px !important;
     }
+
     div.dashboardLocation
     {
         font-size: 45px !important;
     }
+
     div.dashboardIp, div.marineArea
     {
-        float: right !important;
+        font-size: 40px !important;
+    }
+
+    div.marineForecast, div.marineConditions
+    {
+        margin-bottom: 30px !important;
     }
 }
 
-@media only screen and (min-width: 751px)
+@media only screen and (min-device-width: 751px)
 {
     div.dashboardItem {
         flex: 20%;
+    }
+    div.sectionToggle {
+        font-size: small;
     }
 }
 
@@ -138,28 +170,28 @@ div.dashboardTemp
 
 div.dashboardHumidity
 {
-    display: inline-block;
     float: left;
+    font-size: medium;
 }
 
-div.dashboardPressure, div.dashboardActive
+div.dashboardPressure, div.nodeControl
 {
-    display: inline-block;
     float: right;
+    font-size: medium;
 }
 
 div.dashboardLocation
 {
     display: inline-block;
-    font-size: small;
-    font-weight: bold;
+    font-size: large;
+    /*font-weight: bold;*/
     vertical-align: text-top;
 }
 
-div.dashboardTimestamp, div.dashboardActive, div.dashboardIp, div.smallDarkGray, div.marineArea
+div.dashboardTimestamp, div.nodeControl, div.dashboardIp, div.smallDarkGray, div.marineArea
 {
     display: inline-block;
-    font-size: x-small;
+    font-size: small;
     color: #757575;
     white-space: nowrap;
 }
