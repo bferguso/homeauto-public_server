@@ -26,8 +26,7 @@ def weather():
                     "current_conditions": [externalContent.get_marine_conditions(externalContent.PAM_ROCKS),
                                            externalContent.get_marine_conditions(externalContent.POINT_ATKINSON),
                                            externalContent.get_marine_conditions(externalContent.HALIBUT_BANK)],
-                    "tide_data": [externalContent.get_tides(externalContent.POINT_ATKINSON, datetime.date.today()),
-                                  externalContent.get_tides(externalContent.GIBSONS, datetime.date.today())]}
+                    "tide_locations": [externalContent.POINT_ATKINSON, externalContent.GIBSONS]}
     return render_template("weather.html", weather_data=weather_data)
 
 
@@ -44,12 +43,9 @@ def custom_weather():
         conditions.append(externalContent.get_marine_conditions(condition_station))
 
     tide_stations = json.loads(request.values.get("tides"))
-    marine_tides = []
-    for tide_station in tide_stations:
-        marine_tides.append(externalContent.get_tides(tide_station, datetime.date.today()))
     weather_data = {"forecasts": forecasts,
                     "current_conditions": conditions,
-                    "tide_data": marine_tides}
+                    "tide_locations": tide_stations}
     return render_template("weather.html", weather_data=weather_data)
 
 
@@ -116,22 +112,20 @@ def current_marine_forecast():
                         status=200,
                         mimetype="application/json")
 
-
 @app.route('/getTides')
-def tides():
+def get_tides():
     try:
-        station = request.args.get('station')
-        obj = externalContent.get_tides(station, datetime.date.today())
-        return Response(response=json.dumps(obj),
+        location_name = request.args.get("location_name")
+        tide_data = externalContent.get_tides(location_name, datetime.date.today())
+        data = {"success": True, "tide_data": tide_data}
+        return Response(response=json.dumps(data),
                         status=200,
                         mimetype="application/json")
     except ValueError:
-        return Response(response=json.dumps({"error": "Invalid station name. Use /weather/getTideStations for valid names."}),
+        data = {"success": False}
+        return Response(response=json.dumps(data),
                         status=200,
                         mimetype="application/json")
-
-def tideStationList():
-    externalContent.S
 
 
 if __name__ == "__main__":
