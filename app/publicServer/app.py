@@ -28,7 +28,8 @@ def weather():
                     "current_conditions": [externalContent.get_marine_conditions(externalContent.PAM_ROCKS),
                                            externalContent.get_marine_conditions(externalContent.POINT_ATKINSON),
                                            externalContent.get_marine_conditions(externalContent.HALIBUT_BANK)],
-                    "tide_locations": [externalContent.POINT_ATKINSON, externalContent.GIBSONS]}
+                    "tide_locations": [externalContent.POINT_ATKINSON, externalContent.GIBSONS],
+                    "config_title": "Bowen Island Marine Weather"}
     __log_access()
     return render_template("weather.html", weather_data=weather_data)
 
@@ -46,9 +47,13 @@ def custom_weather():
         conditions.append(externalContent.get_marine_conditions(condition_station))
 
     tide_stations = json.loads(request.values.get("tides"))
+    title = request.values.get("title")
+    if not title:
+        title = "Custom Marine Weather"
     weather_data = {"forecasts": forecasts,
                     "current_conditions": conditions,
-                    "tide_locations": tide_stations}
+                    "tide_locations": tide_stations,
+                    "config_title": title}
     __log_access()
     return render_template("weather.html", weather_data=weather_data)
 
@@ -64,7 +69,7 @@ def build_url():
                 }
     build_base_url = request.base_url.replace("buildUrl", "custom")
     __log_access()
-    return render_template("urlBuilder.html", station_data=stations, base_url=build_base_url)
+    return render_template("marineWxBuilder.html", station_data=stations, base_url=build_base_url)
 
 
 @app.route('/getConditionStations')
