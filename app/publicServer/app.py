@@ -3,6 +3,7 @@ from flask import Flask, render_template
 from flask import Response
 import time
 from dao.ExternalContentDao import ExternalContentDao
+from dao.PublicServerDao import PublicServerDao
 
 import simplejson as json
 import datetime
@@ -10,6 +11,7 @@ import decimal
 app = Flask(__name__)
 app.debug = True
 externalContent = ExternalContentDao()
+serverDao = PublicServerDao()
 
 
 def verify_token(password):
@@ -27,6 +29,7 @@ def weather():
                                            externalContent.get_marine_conditions(externalContent.POINT_ATKINSON),
                                            externalContent.get_marine_conditions(externalContent.HALIBUT_BANK)],
                     "tide_locations": [externalContent.POINT_ATKINSON, externalContent.GIBSONS]}
+    __log_access()
     return render_template("weather.html", weather_data=weather_data)
 
 
@@ -46,6 +49,7 @@ def custom_weather():
     weather_data = {"forecasts": forecasts,
                     "current_conditions": conditions,
                     "tide_locations": tide_stations}
+    __log_access()
     return render_template("weather.html", weather_data=weather_data)
 
 
@@ -59,6 +63,7 @@ def build_url():
                     }
                 }
     build_base_url = request.base_url.replace("buildUrl", "custom")
+    __log_access()
     return render_template("urlBuilder.html", station_data=stations, base_url=build_base_url)
 
 
@@ -126,6 +131,15 @@ def get_tides():
         return Response(response=json.dumps(data),
                         status=200,
                         mimetype="application/json")
+
+
+def __log_access():
+    try:
+        log_data = {"remote_address": request.remote_addr, "url": request.url}
+        serverDao.log_access(env_data=log_data)
+    except Exception as e:
+        print("Could not log access.")
+        print(e)
 
 
 if __name__ == "__main__":
