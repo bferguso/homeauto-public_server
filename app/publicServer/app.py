@@ -22,7 +22,7 @@ def verify_token(password):
 
 
 @app.route('/')
-def weather():
+def home():
     weather_data = {"forecasts": [externalContent.get_marine_forecast(externalContent.HOWE_SOUND),
                                   externalContent.get_marine_forecast(externalContent.GEORGIA_SOUTH)],
                     "current_conditions": [externalContent.get_marine_conditions(externalContent.PAM_ROCKS),
@@ -31,7 +31,8 @@ def weather():
                     "tide_locations": [externalContent.POINT_ATKINSON, externalContent.GIBSONS],
                     "config_title": "Bowen Island Marine Weather"}
     __log_access()
-    return render_template("weather.html", weather_data=weather_data)
+    visitor_info = serverDao.get_visitor_info()
+    return render_template("weather.html", weather_data=weather_data, visitor_info=visitor_info)
 
 
 @app.route('/custom')
@@ -54,8 +55,9 @@ def custom_weather():
                     "current_conditions": conditions,
                     "tide_locations": tide_stations,
                     "config_title": title}
+    visitor_info = serverDao.get_visitor_info()
     __log_access()
-    return render_template("weather.html", weather_data=weather_data)
+    return render_template("weather.html", weather_data=weather_data, visitor_info=visitor_info)
 
 
 @app.route('/buildUrl')
@@ -69,6 +71,7 @@ def build_url():
                 }
     build_base_url = request.base_url.replace("buildUrl", "custom")
     __log_access()
+    visitor_info = serverDao.get_visitor_info()
     return render_template("marineWxBuilder.html", station_data=stations, base_url=build_base_url)
 
 

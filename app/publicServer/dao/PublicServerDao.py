@@ -27,3 +27,14 @@ class PublicServerDao:
         conn.commit()
         cur.close()
         conn.close()
+
+    def get_visitor_info(self):
+        conn = self.get_connection()
+        cur = self.get_cursor(conn)
+        cur.execute("select count(*) from ps_access_log;")
+        visitor_count = cur.fetchone()
+        cur.execute("select min(access_timestamp) from ps_access_log;")
+        first_visitor = cur.fetchone()
+        cur.close()
+        conn.close()
+        return {"visitors": visitor_count[0], "since": first_visitor[0]}
