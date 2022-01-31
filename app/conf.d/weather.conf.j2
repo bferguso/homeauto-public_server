@@ -1,0 +1,11 @@
+WSGIDaemonProcess publicServer user=apache group=apache threads=5
+WSGIScriptAlias /weather /var/www/python/publicServer.py
+<Directory /var/www/python>
+   WSGIProcessGroup publicServer
+   WSGIApplicationGroup %{GLOBAL}
+   Order deny,allow
+   Allow from all
+</Directory>
+<Files publicServer.py>
+  Require all granted
+</Files>
